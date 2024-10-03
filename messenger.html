@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger Chat Plugin</title>
+    <style>
+        /* Style for the Messenger Icon */
+        #messenger-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0084ff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+        }
+
+        #messenger-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Ensure that the Messenger chat starts hidden */
+        .fb_dialog_container {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Messenger Icon -->
+    <div id="messenger-icon" onclick="toggleMessenger()">
+        <img src="messenger-icon.png" alt="Chat with us">
+    </div>
+
+    <!-- Facebook Messenger Chat Plugin -->
+    <div id="fb-root"></div>
+
+    <script>
+        // Facebook SDK Initialization
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v13.0'
+            });
+        };
+
+        // Load the SDK asynchronously
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        // Toggle the visibility of the chat window
+        function toggleMessenger() {
+            var chatbox = document.querySelector('.fb_dialog_container');
+            if (chatbox.style.display === "none" || chatbox.style.display === "") {
+                chatbox.style.display = "block";  // Show chat window
+            } else {
+                chatbox.style.display = "none";  // Hide chat window
+            }
+        }
+    </script>
+
+    <!-- Messenger Customer Chat Code -->
+    <div class="fb-customerchat" attribution="setup_tool" page_id="111737491738168" theme_color="#0084ff"
+        logged_in_greeting="Hi! How can we help you?" logged_out_greeting="Hi! Please log in to chat with us.">
+    </div>
+
+</body>
+
+</html>
