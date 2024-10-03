@@ -54,7 +54,7 @@
       }
 
       100% {
-        transform: translate(-50%, -50%) scale(2.5);
+        transform: translate(-50%, -50%) scale(1.3);
         opacity: 0;
       }
     }
@@ -68,7 +68,7 @@
   <div class="whatsapp-chat" id="whatsapp-chat">
     <div class="whatsapp-container">
       <!-- Wave Animation under the WhatsApp Icon -->
-      <div class="whatsapp-wave" id="whatsapp-wave"></div>
+      <div class="whatsapp-wave" id="whatsapp-wave"><i></i></div>
 
       <!-- WhatsApp Icon -->
       <a
@@ -285,70 +285,66 @@
 
   <!-- javascript -->
   <script>
-          // Variables for mobile and desktop sizes
-          const mobileIconSize = {{ section.settings.mobile_icon_size }}; // Icon size in pixels for mobile
-          const mobileWaveSize = {{ section.settings.mobile_wave_size }}; // Wave size in pixels for mobile
-          const mobilePositionRight = {{ section.settings.mobile_position_right }}; // Position from right in percentage for mobile
-          const mobilePositionBottom = {{ section.settings.mobile_position_bottom }}; // Position from bottom in percentage for mobile
-  
-          const desktopIconSize = {{ section.settings.desktop_icon_size }}; // Icon size in pixels for desktop
-          const desktopWaveSize = {{ section.settings.desktop_wave_size }}; // Wave size in pixels for desktop
-          const desktopPositionRight = {{ section.settings.desktop_position_right }}; // Position from right in percentage for desktop
-          const desktopPositionBottom = {{ section.settings.desktop_position_bottom }}; // Position from bottom in percentage for desktop
-  
-          // Variable for wave background color
-          const waveBgColor = '{{ section.settings.wave_bg_color }}'; // Change this color to modify wave color
-          // Get elements
-          const whatsappIcon = document.getElementById('whatsapp-icon');
-          const whatsappWave = document.getElementById('whatsapp-wave');
-          const whatsappChat = document.getElementById('whatsapp-chat');
-  
-          // Function to adjust sizes and positions based on screen width
-          function adjustSizesAndPosition() {
-              const screenWidth = window.innerWidth;
-  
-              // Set wave background color
-              whatsappWave.style.backgroundColor = waveBgColor;
-  
-              if (screenWidth < 769) {
-                  // Mobile device settings
-                  whatsappIcon.style.width = `${mobileIconSize}px`;
-                  whatsappIcon.style.height = `${mobileIconSize}px`;
-  
-                  whatsappWave.style.width = `${mobileWaveSize}px`;
-                  whatsappWave.style.height = `${mobileWaveSize}px`;
-  
-                  whatsappChat.style.right = `${mobilePositionRight}%`;
-                  whatsappChat.style.bottom = `${mobilePositionBottom}%`;
-              } else {
-                  // Desktop device settings
-                  whatsappIcon.style.width = `${desktopIconSize}px`;
-                  whatsappIcon.style.height = `${desktopIconSize}px`;
-  
-                  whatsappWave.style.width = `${desktopWaveSize}px`;
-                  whatsappWave.style.height = `${desktopWaveSize}px`;
-  
-                  whatsappChat.style.right = `${desktopPositionRight}%`;
-                  whatsappChat.style.bottom = `${desktopPositionBottom}%`;
-              }
-          }
-  
-          // Call the function initially
-          adjustSizesAndPosition();
-  
-          // Add event listener to adjust sizes on window resize
-          window.addEventListener('resize', adjustSizesAndPosition);
+        // Variables for mobile and desktop sizes
+        const mobileIconSize = {{ section.settings.mobile_icon_size }}; // Icon size in pixels for mobile
+        const mobileWaveSize = {{ section.settings.mobile_wave_size }}; // Wave size in pixels for mobile
+        const mobilePositionRight = {{ section.settings.mobile_position_right }}; // Position from right in percentage for mobile
+        const mobilePositionBottom = {{ section.settings.mobile_position_bottom }}; // Position from bottom in percentage for mobile
+
+        const desktopIconSize = {{ section.settings.desktop_icon_size }}; // Icon size in pixels for desktop
+        const desktopWaveSize = {{ section.settings.desktop_wave_size }}; // Wave size in pixels for desktop
+        const desktopPositionRight = {{ section.settings.desktop_position_right }}; // Position from right in percentage for desktop
+        const desktopPositionBottom = {{ section.settings.desktop_position_bottom }}; // Position from bottom in percentage for desktop
+
+        // Variable for wave background color
+        const waveBgColor = '{{ section.settings.wave_rgb_bg_color }}'; // Change this color to modify wave color
+        // Get elements
+        const whatsappIcon = document.getElementById('whatsapp-icon');
+        const whatsappWave = document.getElementById('whatsapp-wave');
+        const whatsappChat = document.getElementById('whatsapp-chat');
+
+        // Function to adjust sizes and positions based on screen width
+        function adjustSizesAndPosition() {
+            const screenWidth = window.innerWidth;
+
+            // Set wave background color
+            whatsappWave.style.backgroundColor = waveBgColor;
+
+            if (screenWidth < 769) {
+                // Mobile device settings
+                whatsappIcon.style.width = `${mobileIconSize}px`;
+                whatsappIcon.style.height = `${mobileIconSize}px`;
+
+                whatsappWave.style.width = `${mobileWaveSize}px`;
+                whatsappWave.style.height = `${mobileWaveSize}px`;
+
+                whatsappChat.style.right = `${mobilePositionRight}%`;
+                whatsappChat.style.bottom = `${mobilePositionBottom}%`;
+            } else {
+                // Desktop device settings
+                whatsappIcon.style.width = `${desktopIconSize}px`;
+                whatsappIcon.style.height = `${desktopIconSize}px`;
+
+                whatsappWave.style.width = `${desktopWaveSize}px`;
+                whatsappWave.style.height = `${desktopWaveSize}px`;
+
+                whatsappChat.style.right = `${desktopPositionRight}%`;
+                whatsappChat.style.bottom = `${desktopPositionBottom}%`;
+            }
+        }
+
+        // Call the function initially
+        adjustSizesAndPosition();
+
+        // Add event listener to adjust sizes on window resize
+        window.addEventListener('resize', adjustSizesAndPosition);
   </script>
 </section>
 
 {% schema %}
 {
-  "name": "Whatsapp Chat Plugin",
+  "name": "Whatsapp",
   "settings": [
-    {
-      "type": "header",
-      "content": "WhatsApp Chat Plugin Settings"
-    },
     {
       "type": "text",
       "id": "whatsapp_number",
@@ -378,7 +374,7 @@
       "type": "range",
       "id": "mobile_position_right",
       "label": "Mobile Position Right",
-      "default": 1,
+      "default": 2,
       "min": 0,
       "max": 100,
       "unit": "%"
@@ -414,7 +410,7 @@
       "type": "range",
       "id": "desktop_position_right",
       "label": "Desktop Position Right",
-      "default": 1,
+      "default": 3,
       "min": 0,
       "max": 100,
       "unit": "%"
@@ -429,10 +425,10 @@
       "unit": "%"
     },
     {
-      "type": "color",
-      "id": "wave_bg_color",
-      "label": "Wave Background Color",
-      "default": "#3AC25B"
+      "type": "text",
+      "id": "wave_rgb_bg_color",
+      "label": "Wave Background RGB Color",
+      "default": "rgba(37, 211, 89, 0.2)"
     }
   ]
 }
